@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Filmotekica.Models.reziser>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Spisak rezisera</h2>
+
+<p>
+    @Html.ActionLink("Dodaj novog", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.imerezisera)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.starost)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.imerezisera)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.starost)
+        </td>
+        <td>
+            @Html.ActionLink("Izmeni", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Detalji", "Details", new { id=item.id }) |
+            @Html.ActionLink("Izbrisi", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

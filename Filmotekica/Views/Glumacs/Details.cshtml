@@ -1,0 +1,50 @@
+﻿@model Filmotekica.Models.glumac
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Detalji</h2>
+
+<div>
+    <h4>Glumac</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.imeglumca)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.imeglumca)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.prezimeglumca)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.prezimeglumca)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.username)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.password)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Izmeni", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Povratak na tabelu", "Index")
+</p>

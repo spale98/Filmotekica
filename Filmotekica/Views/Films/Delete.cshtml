@@ -1,0 +1,58 @@
+﻿@model Filmotekica.Models.film
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Obrisi</h2>
+
+<h3>Da li si siguran da zelis da obrises ovo?</h3>
+<div>
+    <h4>Film</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.imefilma)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.imefilma)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.opis)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.opis)
+        </dd>
+
+       
+
+        <dt>
+            @Html.DisplayNameFor(model => model.reziser.imerezisera)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.reziser.imerezisera)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.zanr.zanr1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.zanr.zanr1)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Obrisi" class="btn btn-default" /> |
+            @Html.ActionLink("Povratak na tabelu", "Index")
+        </div>
+    }
+</div>

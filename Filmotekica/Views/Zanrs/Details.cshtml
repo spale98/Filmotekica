@@ -1,0 +1,34 @@
+﻿@model Filmotekica.Models.zanr
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Detalji</h2>
+
+<div>
+    <h4>zanr</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.zanr1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.zanr1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.opis)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.opis)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Izmeni", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Povratak na listu", "Index")
+</p>

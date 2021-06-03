@@ -1,0 +1,50 @@
+﻿@model Filmotekica.Models.film
+
+@{
+    ViewBag.Title = "Detalji";
+}
+
+<h2>Detalji</h2>
+
+<div>
+    <h4>film</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.imefilma)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.imefilma)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.opis)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.opis)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.reziser.imerezisera)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.reziser.imerezisera)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.zanr.zanr1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.zanr.zanr1)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

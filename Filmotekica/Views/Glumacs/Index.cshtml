@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Filmotekica.Models.glumac>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Spisak glumaca</h2>
+
+<p>
+    @Html.ActionLink("Dodaj novog", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.imeglumca)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.prezimeglumca)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.username)
+        </th>
+       
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.imeglumca)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.prezimeglumca)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.username)
+        </td>
+        
+        <td>
+            @Html.ActionLink("Izmeni", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Detalji", "Details", new { id=item.id }) |
+            @Html.ActionLink("Izbrisi", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

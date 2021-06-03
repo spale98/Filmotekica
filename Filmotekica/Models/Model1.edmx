@@ -1,0 +1,268 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="FilmotekicaDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="film">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="imefilma" Type="varchar" MaxLength="50" />
+          <Property Name="opis" Type="varchar" MaxLength="50" />
+          <Property Name="reziser_id" Type="int" />
+          <Property Name="zanr_id" Type="int" />
+        </EntityType>
+        <EntityType Name="glumac">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="imeglumca" Type="varchar" MaxLength="50" />
+          <Property Name="prezimeglumca" Type="varchar" MaxLength="50" />
+          <Property Name="username" Type="varchar" MaxLength="50" />
+          <Property Name="password" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="reziser">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="imerezisera" Type="varchar" MaxLength="50" />
+          <Property Name="starost" Type="int" />
+        </EntityType>
+        <EntityType Name="zanr">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="zanr" Type="varchar" MaxLength="50" />
+          <Property Name="opis" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_film_film">
+          <End Role="film" Type="Self.film" Multiplicity="1" />
+          <End Role="film1" Type="Self.film" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="film">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="film1">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_film_reziser">
+          <End Role="reziser" Type="Self.reziser" Multiplicity="0..1" />
+          <End Role="film" Type="Self.film" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="reziser">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="film">
+              <PropertyRef Name="reziser_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_film_zanr">
+          <End Role="zanr" Type="Self.zanr" Multiplicity="0..1" />
+          <End Role="film" Type="Self.film" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="zanr">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="film">
+              <PropertyRef Name="zanr_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FilmotekicaDBModelStoreContainer">
+          <EntitySet Name="film" EntityType="Self.film" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="glumac" EntityType="Self.glumac" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="reziser" EntityType="Self.reziser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="zanr" EntityType="Self.zanr" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_film_film" Association="Self.FK_film_film">
+            <End Role="film" EntitySet="film" />
+            <End Role="film1" EntitySet="film" />
+          </AssociationSet>
+          <AssociationSet Name="FK_film_reziser" Association="Self.FK_film_reziser">
+            <End Role="reziser" EntitySet="reziser" />
+            <End Role="film" EntitySet="film" />
+          </AssociationSet>
+          <AssociationSet Name="FK_film_zanr" Association="Self.FK_film_zanr">
+            <End Role="zanr" EntitySet="zanr" />
+            <End Role="film" EntitySet="film" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FilmotekicaDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="film">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="imefilma" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="opis" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="reziser_id" Type="Int32" />
+          <Property Name="zanr_id" Type="Int32" />
+          <NavigationProperty Name="film1" Relationship="Self.FK_film_film" FromRole="film" ToRole="film1" />
+          <NavigationProperty Name="film2" Relationship="Self.FK_film_film" FromRole="film1" ToRole="film" />
+          <NavigationProperty Name="reziser" Relationship="Self.FK_film_reziser" FromRole="film" ToRole="reziser" />
+          <NavigationProperty Name="zanr" Relationship="Self.FK_film_zanr" FromRole="film" ToRole="zanr" />
+        </EntityType>
+        <EntityType Name="glumac">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="imeglumca" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="prezimeglumca" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="reziser">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="imerezisera" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="starost" Type="Int32" />
+          <NavigationProperty Name="films" Relationship="Self.FK_film_reziser" FromRole="reziser" ToRole="film" />
+        </EntityType>
+        <EntityType Name="zanr">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="zanr1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="opis" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="films" Relationship="Self.FK_film_zanr" FromRole="zanr" ToRole="film" />
+        </EntityType>
+        <Association Name="FK_film_film">
+          <End Role="film" Type="Self.film" Multiplicity="1" />
+          <End Role="film1" Type="Self.film" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="film">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="film1">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_film_reziser">
+          <End Role="reziser" Type="Self.reziser" Multiplicity="0..1" />
+          <End Role="film" Type="Self.film" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="reziser">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="film">
+              <PropertyRef Name="reziser_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_film_zanr">
+          <End Role="zanr" Type="Self.zanr" Multiplicity="0..1" />
+          <End Role="film" Type="Self.film" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="zanr">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="film">
+              <PropertyRef Name="zanr_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FilmotekicaDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="films" EntityType="Self.film" />
+          <EntitySet Name="glumacs" EntityType="Self.glumac" />
+          <EntitySet Name="rezisers" EntityType="Self.reziser" />
+          <EntitySet Name="zanrs" EntityType="Self.zanr" />
+          <AssociationSet Name="FK_film_film" Association="Self.FK_film_film">
+            <End Role="film" EntitySet="films" />
+            <End Role="film1" EntitySet="films" />
+          </AssociationSet>
+          <AssociationSet Name="FK_film_reziser" Association="Self.FK_film_reziser">
+            <End Role="reziser" EntitySet="rezisers" />
+            <End Role="film" EntitySet="films" />
+          </AssociationSet>
+          <AssociationSet Name="FK_film_zanr" Association="Self.FK_film_zanr">
+            <End Role="zanr" EntitySet="zanrs" />
+            <End Role="film" EntitySet="films" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FilmotekicaDBModelStoreContainer" CdmEntityContainer="FilmotekicaDBEntities">
+          <EntitySetMapping Name="films">
+            <EntityTypeMapping TypeName="FilmotekicaDBModel.film">
+              <MappingFragment StoreEntitySet="film">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="imefilma" ColumnName="imefilma" />
+                <ScalarProperty Name="opis" ColumnName="opis" />
+                <ScalarProperty Name="reziser_id" ColumnName="reziser_id" />
+                <ScalarProperty Name="zanr_id" ColumnName="zanr_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="glumacs">
+            <EntityTypeMapping TypeName="FilmotekicaDBModel.glumac">
+              <MappingFragment StoreEntitySet="glumac">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="imeglumca" ColumnName="imeglumca" />
+                <ScalarProperty Name="prezimeglumca" ColumnName="prezimeglumca" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="rezisers">
+            <EntityTypeMapping TypeName="FilmotekicaDBModel.reziser">
+              <MappingFragment StoreEntitySet="reziser">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="imerezisera" ColumnName="imerezisera" />
+                <ScalarProperty Name="starost" ColumnName="starost" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="zanrs">
+            <EntityTypeMapping TypeName="FilmotekicaDBModel.zanr">
+              <MappingFragment StoreEntitySet="zanr">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="zanr1" ColumnName="zanr" />
+                <ScalarProperty Name="opis" ColumnName="opis" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

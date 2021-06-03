@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FilmotekicaDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="film">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="imefilma" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="opis" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="reziser_id" Type="Int32" />
+    <Property Name="zanr_id" Type="Int32" />
+    <NavigationProperty Name="film1" Relationship="Self.FK_film_film" FromRole="film" ToRole="film1" />
+    <NavigationProperty Name="film2" Relationship="Self.FK_film_film" FromRole="film1" ToRole="film" />
+    <NavigationProperty Name="reziser" Relationship="Self.FK_film_reziser" FromRole="film" ToRole="reziser" />
+    <NavigationProperty Name="zanr" Relationship="Self.FK_film_zanr" FromRole="film" ToRole="zanr" />
+  </EntityType>
+  <EntityType Name="glumac">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="imeglumca" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="prezimeglumca" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="reziser">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="imerezisera" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="starost" Type="Int32" />
+    <NavigationProperty Name="films" Relationship="Self.FK_film_reziser" FromRole="reziser" ToRole="film" />
+  </EntityType>
+  <EntityType Name="zanr">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="zanr1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="opis" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="films" Relationship="Self.FK_film_zanr" FromRole="zanr" ToRole="film" />
+  </EntityType>
+  <Association Name="FK_film_film">
+    <End Role="film" Type="Self.film" Multiplicity="1" />
+    <End Role="film1" Type="Self.film" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="film">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="film1">
+        <PropertyRef Name="id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_film_reziser">
+    <End Role="reziser" Type="Self.reziser" Multiplicity="0..1" />
+    <End Role="film" Type="Self.film" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="reziser">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="film">
+        <PropertyRef Name="reziser_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_film_zanr">
+    <End Role="zanr" Type="Self.zanr" Multiplicity="0..1" />
+    <End Role="film" Type="Self.film" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="zanr">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="film">
+        <PropertyRef Name="zanr_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="FilmotekicaDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="films" EntityType="Self.film" />
+    <EntitySet Name="glumacs" EntityType="Self.glumac" />
+    <EntitySet Name="rezisers" EntityType="Self.reziser" />
+    <EntitySet Name="zanrs" EntityType="Self.zanr" />
+    <AssociationSet Name="FK_film_film" Association="Self.FK_film_film">
+      <End Role="film" EntitySet="films" />
+      <End Role="film1" EntitySet="films" />
+    </AssociationSet>
+    <AssociationSet Name="FK_film_reziser" Association="Self.FK_film_reziser">
+      <End Role="reziser" EntitySet="rezisers" />
+      <End Role="film" EntitySet="films" />
+    </AssociationSet>
+    <AssociationSet Name="FK_film_zanr" Association="Self.FK_film_zanr">
+      <End Role="zanr" EntitySet="zanrs" />
+      <End Role="film" EntitySet="films" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

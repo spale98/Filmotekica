@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Filmotekica.Models.zanr>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Spisak zanrova</h2>
+
+<p>
+    @Html.ActionLink("Dodaj novi", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.zanr1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.opis)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.zanr1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.opis)
+        </td>
+        <td>
+            @Html.ActionLink("Izmeni", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Detalji", "Details", new { id=item.id }) |
+            @Html.ActionLink("Izbrisi", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

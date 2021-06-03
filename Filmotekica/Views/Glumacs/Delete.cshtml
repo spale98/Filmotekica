@@ -1,0 +1,56 @@
+﻿@model Filmotekica.Models.glumac
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Obrisi</h2>
+
+<h3>Da li si siguran da zelis da obrises ovo?</h3>
+<div>
+    <h4>Glumac</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.imeglumca)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.imeglumca)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.prezimeglumca)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.prezimeglumca)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.username)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.password)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Obrisi" class="btn btn-default" /> |
+            @Html.ActionLink("Povratak na tabelu", "Index")
+        </div>
+    }
+</div>

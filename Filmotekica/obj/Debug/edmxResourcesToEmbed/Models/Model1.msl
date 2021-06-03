@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="FilmotekicaDBModelStoreContainer" CdmEntityContainer="FilmotekicaDBEntities">
+    <EntitySetMapping Name="films">
+      <EntityTypeMapping TypeName="FilmotekicaDBModel.film">
+        <MappingFragment StoreEntitySet="film">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="imefilma" ColumnName="imefilma" />
+          <ScalarProperty Name="opis" ColumnName="opis" />
+          <ScalarProperty Name="reziser_id" ColumnName="reziser_id" />
+          <ScalarProperty Name="zanr_id" ColumnName="zanr_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="glumacs">
+      <EntityTypeMapping TypeName="FilmotekicaDBModel.glumac">
+        <MappingFragment StoreEntitySet="glumac">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="imeglumca" ColumnName="imeglumca" />
+          <ScalarProperty Name="prezimeglumca" ColumnName="prezimeglumca" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="password" ColumnName="password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="rezisers">
+      <EntityTypeMapping TypeName="FilmotekicaDBModel.reziser">
+        <MappingFragment StoreEntitySet="reziser">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="imerezisera" ColumnName="imerezisera" />
+          <ScalarProperty Name="starost" ColumnName="starost" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="zanrs">
+      <EntityTypeMapping TypeName="FilmotekicaDBModel.zanr">
+        <MappingFragment StoreEntitySet="zanr">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="zanr1" ColumnName="zanr" />
+          <ScalarProperty Name="opis" ColumnName="opis" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
